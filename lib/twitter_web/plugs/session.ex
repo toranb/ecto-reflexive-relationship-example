@@ -21,7 +21,9 @@ defmodule TwitterWeb.Plug.Session do
         conn
 
       [{_, user_id}] ->
-        assign(conn, :user_id, user_id)
+        conn
+        |> assign(:user_id, user_id)
+        |> put_session("current_user_id", user_id)
     end
   end
 end

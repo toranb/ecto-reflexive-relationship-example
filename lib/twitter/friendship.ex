@@ -11,4 +11,8 @@ defmodule Twitter.Friendship do
 
     timestamps()
   end
+
+  def changeset(friendship, params \\ %{}) do
+    friendship |> cast(params, [:user_id, :friend_id, :status_id])
+  end
 end

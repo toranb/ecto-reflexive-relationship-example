@@ -26,13 +26,15 @@ defmodule TwitterWeb.Router do
     pipe_through :browser
 
     get "/logout", LogoutController, :index
-    live "/login", LoginLive, :index
+    live "/", LoginLive, :index
   end
 
   scope "/friends", TwitterWeb do
     pipe_through :restricted
 
     live "/", FriendsLive, :index
+    live "/invites", InvitesLive, :index
+    live "/search", SearchLive, :index
   end
 
   # Other scopes may use custom stacks.
