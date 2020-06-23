@@ -1,11 +1,6 @@
-# Script for populating the database. You can run it as:
-#
-#     mix run priv/repo/seeds.exs
-#
-# Inside the script, you can read and write to any of your
-# repositories directly:
-#
-#     Twitter.Repo.insert!(%Twitter.SomeSchema{})
-#
-# We recommend using the bang functions (`insert!`, `update!`
-# and so on) as they will fail if something goes wrong.
+%Twitter.Status{} |> Twitter.Status.changeset(%{ id: "PENDING" }) |> Twitter.Repo.insert!()
+%Twitter.Status{} |> Twitter.Status.changeset(%{ id: "IGNORED" }) |> Twitter.Repo.insert!()
+%Twitter.Status{} |> Twitter.Status.changeset(%{ id: "ACCEPTED" }) |> Twitter.Repo.insert!()
+%Twitter.User{} |> Twitter.User.changeset(%{ name: "toran", code: "123" }) |> Twitter.Repo.insert!()
+%Twitter.User{} |> Twitter.User.changeset(%{ name: "christopher", code: "456" }) |> Twitter.Repo.insert!()
+%Twitter.User{} |> Twitter.User.changeset(%{ name: "brandon", code: "789" }) |> Twitter.Repo.insert!()
