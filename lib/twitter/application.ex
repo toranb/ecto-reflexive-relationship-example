@@ -19,6 +19,8 @@ defmodule Twitter.Application do
       # {Twitter.Worker, arg}
     ]
 
+    :ets.new(:twitter_auth_table, [:set, :public, :named_table, read_concurrency: true])
+
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: Twitter.Supervisor]

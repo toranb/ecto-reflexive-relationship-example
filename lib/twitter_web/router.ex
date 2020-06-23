@@ -1,6 +1,8 @@
 defmodule TwitterWeb.Router do
   use TwitterWeb, :router
 
+  import TwitterWeb.Plug.Session, only: [redirect_unauthorized: 2, validate_session: 2]
+
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
@@ -8,6 +10,12 @@ defmodule TwitterWeb.Router do
     plug :put_root_layout, {TwitterWeb.LayoutView, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug :validate_session
+  end
+
+  pipeline :restricted do
+    plug :browser
+    plug :redirect_unauthorized
   end
 
   pipeline :api do
@@ -16,6 +24,13 @@ defmodule TwitterWeb.Router do
 
   scope "/", TwitterWeb do
     pipe_through :browser
+
+    get "/logout", LogoutController, :index
+    live "/login", LoginLive, :index
+  end
+
+  scope "/tweets", TwitterWeb do
+    pipe_through :restricted
 
     live "/", PageLive, :index
   end
