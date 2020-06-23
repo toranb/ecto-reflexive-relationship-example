@@ -104,7 +104,7 @@ defmodule TwitterWeb.LoginLive do
       %Twitter.User{id: user_id} ->
         :ets.insert(:twitter_auth_table, {:user_id, "#{user_id}"})
 
-        path = Routes.page_path(socket, :index)
+        path = Routes.friends_path(socket, :index)
         redirect = socket |> redirect(to: path)
 
         {:noreply, redirect}

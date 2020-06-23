@@ -29,10 +29,10 @@ defmodule TwitterWeb.Router do
     live "/login", LoginLive, :index
   end
 
-  scope "/tweets", TwitterWeb do
+  scope "/friends", TwitterWeb do
     pipe_through :restricted
 
-    live "/", PageLive, :index
+    live "/", FriendsLive, :index
   end
 
   # Other scopes may use custom stacks.
